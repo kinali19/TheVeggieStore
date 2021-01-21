@@ -1,0 +1,37 @@
+<div class="product m-4">
+  <div class="product-image-holder">
+    <img [src]="product.image" [alt]="product.name" class="product-image" />
+  </div>
+  <div class="product-details">
+    <p class="product-details__name">{{ product.name }}</p>
+    <p class="product-details__price">${{ product.price }}</p>
+  </div>
+  <div class="product-description">
+    <p>{{ product.description }}</p>
+  </div>
+  <div class="product-actions">
+    <button class="product-actions__add" (click)="isLoggedIn ? addToCart(product) : openLoginSignUpForm(product)"
+      *ngIf="!product.inCart">
+
+      <!-- <img src="/assets/images/add-to-cart.png" alt="add to cart" /> -->
+      Add
+    </button>
+    <div class="input-group inline-group" *ngIf="product.inCart">
+      <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary btn-minus" (click)="decrementQty(product)">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <input class="form-control quantity" min="0" name="quantity" value="0" [(ngModel)] ="product.quantity" type="number">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary btn-plus" (click)="incrementQty(product)">
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- <button class="product-actions__remove" (click)="removeFromCart(product)" *ngIf="inCart">
+      <img src="/assets/images/remove-from-cart.png" alt="remove from cart" />
+    </button> -->
+  </div>
+</div>

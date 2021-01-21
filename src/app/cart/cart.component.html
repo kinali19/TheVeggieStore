@@ -1,0 +1,50 @@
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-8" *ngIf="cartItems.length > 0">
+            <div class="p-2">
+                <h4>Shopping cart</h4>
+                <div class="d-flex flex-row align-items-center pull-right" *ngIf="cartItems || cartItems.length > 0">
+                    <span class="mr-1">Sort by:</span><span class="mr-1 font-weight-bold">Price</span><i
+                        class="fa fa-angle-down"></i></div>
+            </div>
+
+
+            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded"
+                *ngFor="let cart of cartItems">
+                <div class="mr-1"><img class="rounded" [src]="cart.image" width="70"></div>
+                <div class="d-flex flex-column align-items-center product-details"><span
+                        class="font-weight-bold">{{cart.name}}</span>
+                    <div class="d-flex flex-row product-desc">
+                        <!-- <div class="size mr-1"><span class="text-grey">description:</span><span class="font-weight-bold">{{cart.description}}</span></div> -->
+                        <!-- <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div> -->
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"
+                        (click)="decrementQty(cart)"></i>
+                    <h5 class="text-grey mt-1 mr-2 ml-2"> {{cart.quantity}} </h5>
+                    <i class="fa fa-plus text-success" (click)="incrementQty(cart)"></i>
+                </div>
+                <div>
+                    <h5 class="text-grey">{{cart.price | currency : '$'}}</h5>
+                </div>
+                <div class="d-flex align-items-center" (click)="removeFromCart(cart)"><i
+                        class="fa fa-trash mb-1 text-danger"></i></div>
+            </div>
+        
+        <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><input type="text"
+                class="form-control border-0 gift-card" placeholder="discount code/gift card"><button
+                class="btn btn-outline-warning btn-sm ml-2" type="button">Apply</button></div>
+        <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button
+                class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button">Proceed to Pay</button></div>
+        <a routerLink="/" class="text-right">Go back</a>
+    </div>
+    <div *ngIf="!cartItems || cartItems.length === 0">
+        <div class="justify-content-between align-items-center message pt-5">
+            <h1>Cart is empty!</h1>
+            <span>You can go to home page to view more veggies</span><br/>
+            <button class="mt-5 btn btn-secondary" routerLink="/">GRAB FRESH VEGGIES</button>
+            <!-- <a routerLink="/">Go back and grab some veggies!</a> -->
+        </div>
+    </div>
+</div>
+</div>

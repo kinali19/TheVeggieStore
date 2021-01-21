@@ -1,0 +1,18 @@
+<header>
+  <div class="brand">
+    <!-- <img src="/assets/images/logo.png" alt="avatar" /> -->
+    <a routerLink="/">
+      <h5>The Veggie Store</h5>
+    </a>
+  </div>
+  <div class="nav">
+    <ul>
+      <li>
+        <a routerLink="/cart">
+          <img src="/assets/images/shopping-bag.png" alt="cart" />
+          <span class="badge" *ngIf="cart.length > 0">{{ cart.length }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
